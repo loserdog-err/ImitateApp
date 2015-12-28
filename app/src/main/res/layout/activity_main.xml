@@ -2,29 +2,29 @@
 <RelativeLayout
     android:id="@+id/rlRoot"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
     tools:context="com.chenantoa.main.MainActivity">
 
-    <FrameLayout
+    <!--<FrameLayout-->
+    <!--android:id="@+id/flContainer"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:paddingTop="10dp"-->
+    <!--android:paddingBottom="20dp"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_centerInParent="true">-->
+    <!--<ImageView-->
+    <!--android:layout_gravity="center_horizontal"-->
+    <!--android:src="@drawable/bg"-->
+    <!--android:layout_width="350dp"-->
+    <!--android:layout_height="480dp"/>-->
+    <!--</FrameLayout>-->
+    <com.chenantao.view.widget.StackLayout
+        android:paddingTop="10dp"
+        android:layout_centerInParent="true"
         android:id="@+id/flContainer"
         android:layout_width="match_parent"
-        android:paddingTop="10dp"
-        android:layout_height="match_parent"
-        android:layout_centerInParent="true">
-        <ImageView
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/bg"
-            android:layout_width="350dp"
-            android:layout_height="500dp"/>
-    </FrameLayout>
-    <!--<com.chenantao.view.widget.MultipleShapeImg-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="200dp"-->
-    <!--android:src="@mipmap/sb"-->
-    <!--app:type="arcRectangle"/>-->
-
+        android:layout_height="match_parent"></com.chenantao.view.widget.StackLayout>
 </RelativeLayout>

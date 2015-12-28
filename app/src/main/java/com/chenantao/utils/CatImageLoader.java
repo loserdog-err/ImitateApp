@@ -6,7 +6,6 @@ import android.graphics.BitmapFactory;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.util.LruCache;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,9 +83,6 @@ public class CatImageLoader
 						if (imageView.getTag().toString().equals(path))
 						{
 							imageView.setImageBitmap(bitmap);
-						} else
-						{
-							Log.e("cat", "not equal");
 						}
 						break;
 				}
@@ -203,7 +199,6 @@ public class CatImageLoader
 				if (mUseDiskCache) bitmap = getBitmapFromDisk(path);
 				if (bitmap == null)
 				{
-					Log.e("cat", "get from network:" + Md5Utils.hashKeyForDisk(path));
 					byte[] data = HttpUtils.getBytes(path);
 					BitmapFactory.Options options = new BitmapFactory.Options();
 					options.inJustDecodeBounds = true;
@@ -264,7 +259,6 @@ public class CatImageLoader
 	 */
 	public Thread getFromRes(final String resId, final ImageView imageView)
 	{
-		Log.e("cat", "resId:" + resId);
 		Thread thread = new Thread()
 		{
 			@Override
@@ -272,7 +266,6 @@ public class CatImageLoader
 			{
 				Bitmap bitmap = null;
 				if (mUseDiskCache) bitmap = getBitmapFromDisk(resId);
-				Log.e("cat", "bitmap:" + bitmap);
 				if (bitmap == null)//磁盘没有缓存，重新加载压缩图片
 				{
 					//压缩图片
@@ -347,7 +340,6 @@ public class CatImageLoader
 			return new ImageSize(imageView.getMeasuredWidth(), imageView.getMeasuredHeight());
 		} else
 		{
-			Log.e("cat", "width:" + width + ",height:" + height);
 			return new ImageSize(width, height);
 		}
 

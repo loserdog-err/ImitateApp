@@ -18,7 +18,6 @@ public class BitmapUtils
 	 */
 	public static Bitmap blur(Bitmap src, View view)
 	{
-//		Log.e("cat", "width:" + src.getWidth() + ",height:" + src.getHeight());
 		float scaleFactor = 8;
 		float radius = 5;
 		Bitmap overlay = Bitmap.createBitmap(

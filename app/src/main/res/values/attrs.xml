@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!--多种形状的imageview-->
     <attr name="type">
         <enum name="round" value="0"/>
         <enum name="fillet" value="1"/>
@@ -8,8 +9,18 @@
         <enum name="arcRectangle" value="3"/>
     </attr>
     <attr name="borderRadius" format="dimension"></attr>
+
+    <!--堆叠布局的属性-->
+    <attr name="contentWidth" format="dimension"/>
+    <attr name="contentHeight" format="dimension"/>
+
     <declare-styleable name="MultipleShapeImg">
         <attr name="type"/>
         <attr name="borderRadius"/>
+    </declare-styleable>
+
+    <declare-styleable name="StackLayout">
+        <attr name="contentWidth"/>
+        <attr name="contentHeight"/>
     </declare-styleable>
 </resources>

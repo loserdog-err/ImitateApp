@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
 import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -120,4 +121,17 @@ public class ScreenUtils
 
 	}
 
+	/**
+	 * 将dp转换为px
+	 *
+	 * @param dp
+	 * @return
+	 */
+	public static int dp2px(int dp, Context context)
+	{
+		context = context.getApplicationContext();
+		return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, context
+				.getResources()
+				.getDisplayMetrics());
+	}
 }
