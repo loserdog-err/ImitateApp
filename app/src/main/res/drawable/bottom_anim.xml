@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:drawable="@mipmap/rocket_fire1"
+        android:duration="100">
+    </item>
+
+    <item
+        android:drawable="@mipmap/rocket_fire2"
+        android:duration="100">
+    </item>
+
+    <item
+        android:drawable="@mipmap/rocket_fire3"
+        android:duration="100">
+    </item>
+
+</animation-list>

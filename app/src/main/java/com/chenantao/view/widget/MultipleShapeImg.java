@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import com.chenantao.main.R;
 import com.chenantao.utils.BitmapUtils;
 
+
 /**
  * Created by chenantao on 2015/10/15.
  * 多种形状的图片(目前包含圆形、圆角矩形、三角形、模糊矩形）
@@ -51,6 +52,8 @@ public class MultipleShapeImg extends ImageView
 
 	private Bitmap src;
 
+	private Drawable mDrawable;
+
 	public MultipleShapeImg(Context context)
 	{
 		this(context, null);
@@ -66,10 +69,10 @@ public class MultipleShapeImg extends ImageView
 		super(context, attrs, defStyleAttr);
 		TypedArray t = context.obtainStyledAttributes(attrs, R.styleable.MultipleShapeImg);
 		borderRadius = t.getDimensionPixelSize(R.styleable.MultipleShapeImg_borderRadius, (int)
-				TypedValue
-						.applyDimension
-								(TypedValue.COMPLEX_UNIT_DIP, 20, getResources().getDisplayMetrics
-										()));
+			TypedValue
+				.applyDimension
+					(TypedValue.COMPLEX_UNIT_DIP, 20, getResources().getDisplayMetrics
+						()));
 		type = t.getInt(R.styleable.MultipleShapeImg_type, 0);
 		t.recycle();
 		paint = new Paint();
@@ -88,25 +91,6 @@ public class MultipleShapeImg extends ImageView
 			radius = width / 2;
 			setMeasuredDimension(width, width);
 		}
-//		if (type == TYPE_ARC_RECTANGLE)
-//		{
-////			src = null;
-//			new AsyncTask<Void, Void, Void>()
-//			{
-//				@Override
-//				protected Void doInBackground(Void... params)
-//				{
-////					src=BitmapUtils.blur(src, MultipleShapeImg.this);
-//					return null;
-//				}
-//
-//				@Override
-//				protected void onPostExecute(Void aVoid)
-//				{
-////					MultipleShapeImg.this.invalidate();
-//				}
-//			}.execute();
-//		}
 	}
 
 	@Override
@@ -144,11 +128,26 @@ public class MultipleShapeImg extends ImageView
 		}
 	}
 
+	@Override
+	public void setImageDrawable(Drawable drawable)
+	{
+		super.setImageDrawable(drawable);
+		mDrawable = drawable;
+		invalidate();
+	}
+
+	@Override
+	public void setImageBitmap(Bitmap bm)
+	{
+		super.setImageBitmap(bm);
+	}
+
 	public void setupShader()
 	{
 		float scale = 1.0f;
-		Drawable drawable = getDrawable();
-		src = drawableToBitmap(drawable);
+		mDrawable = getDrawable();
+		if(mDrawable==null) return;
+		src = drawableToBitmap(mDrawable);
 		if (type == TYPE_ROUND)
 		{
 			int minSize = Math.min(src.getWidth(), src.getHeight());
@@ -156,14 +155,13 @@ public class MultipleShapeImg extends ImageView
 		} else //弧线矩形、三角形、圆角矩形
 		{
 			scale = Math.max(getWidth() * 1.0f / src.getWidth(), getHeight() * 1.0f / src
-					.getHeight());
+				.getHeight());
 		}
 		matrix = new Matrix();
 		bitmapShader = new BitmapShader(src, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
 		matrix.setScale(scale, scale);
 		bitmapShader.setLocalMatrix(matrix);
 		paint.setShader(bitmapShader);
-
 	}
 
 	public Bitmap drawableToBitmap(Drawable drawable)
